@@ -1,6 +1,6 @@
 # Ambient Light Sensor SKU - DFR0026
 
-[dfrobot](https://www.dfrobot.com/wiki/index.php/DFRobot_Ambient_Light_Sensor_SKU:DFR0026)
+[Ambient Light Sensor SKU](https://www.dfrobot.com/wiki/index.php/DFRobot_Ambient_Light_Sensor_SKU:DFR0026)
 
 
 ## Specifications
