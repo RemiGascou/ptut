@@ -1,3 +1,9 @@
+# File name: serial.py
+# Author: Remi GASCOU
+# Date created: 04/05/2019
+# Date last modified: 04/07/2019
+# Python Version: 3.*
+
 import matplotlib.pyplot as plt
 import serial
 import json
@@ -15,9 +21,6 @@ import json
 #     fig.canvas.flush_events()
 #     return lx, ly
 
-
-
-
 def dyn_update(fig, ax, y, ly, size=100, marker='', color="blue"):
     lx = list(range(size))
     ly = ly[1:] + [y]
@@ -32,26 +35,28 @@ def dyn_update(fig, ax, y, ly, size=100, marker='', color="blue"):
 list_time = [0]
 list_sound, list_light = [0], [0]
 
-# You probably won't need this if you're embedding things in a tkinter plot...
-plt.ion()
 
+# Creates the objects for plot
+plt.ion()
 fig       = plt.figure()
 ax_sound  = fig.add_subplot(2, 1, 1)
 ax_light  = fig.add_subplot(2, 1, 2)
-# p_sound,  = ax_sound.plot(list_time, list_sound, marker='') # Returns a tuple of line objects, thus the comma
-# p_light,  = ax_light.plot(list_time, list_light, marker='') # Returns a tuple of line objects, thus the comma
 
+# Infinite loop to read and plot
 xk = 0
 ser = serial.Serial('COM4', 9600, timeout=1)
 while True:
-    ser.write(b"?\n")
-    line = ser.readline()   # read a '\n' terminated line
+    ser.write(b"?\n")       # Asks the arduino for data
+    line = ser.readline()   # Reads data
     try :
         d = json.loads(line)
         print(d)
         xk += 1
+        # Updates the plot for sound sensor
         list_time, list_light = dyn_update(fig, ax_light, d["light"], list_light, color="red")
+        # Updates the plot for light sensor
         list_time, list_sound = dyn_update(fig, ax_sound, d["sound"], list_sound, color="blue")
+        # Refreshs the screen
         fig.canvas.draw()
         fig.canvas.flush_events()
     except Exception:
