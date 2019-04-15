@@ -44,13 +44,13 @@ def gen_fence_fullscale() :
 
 def gen_fence_normal() :
     fence_light = {"min":10, "max":250}
-    fence_sound = {"min":0, "max":100}
+    fence_sound = {"min":0, "max":85}
     fence_temp  = {"min":15, "max":35}
     return fence_light, fence_sound, fence_temp
 
 def gen_fence_anomaly_001() :
     fence_light = {"min": 15, "max": 1013}
-    fence_sound = {"min": 0,  "max": 85}
+    fence_sound = {"min": 0,  "max": 100}
     fence_temp  = {"min": 15, "max": 1013}
     return fence_light, fence_sound, fence_temp
 
@@ -67,16 +67,16 @@ def gen_fence_anomaly_003() :
     return fence_light, fence_sound, fence_temp
 
 def gen_fence_anomaly_004() :
-    fence_light = {"min":0, "max":1013}
-    fence_sound = {"min":0, "max":1013}
-    fence_temp  = {"min":0, "max":1013}
+    fence_light = {"min":10, "max":300}
+    fence_sound = {"min":0, "max":135}
+    fence_temp  = {"min":0, "max":85}
     return fence_light, fence_sound, fence_temp
 
 
-def genscenario(fileout, gfa):
+def genscenario(fileout, gfa, samples = 100):
     """Documentation for genscenario"""
     fences  = gfa()
-    data    = gen_data(fences)
+    data    = gen_data(fences, samples)
 
     f = open(fileout, "w")
     for line in data:
@@ -87,6 +87,6 @@ def genscenario(fileout, gfa):
 
 if __name__ == '__main__':
 
-    genscenario("normal.json", gen_fence_normal)
-    genscenario("normal.json", gen_fence_anomaly_001)
-    genscenario("normal.json", gen_fence_normal)
+    genscenario("normal1000A.json", gen_fence_normal,1000)
+    genscenario("abnormal100.json", gen_fence_anomaly_004,100)
+    #genscenario("normal3.json", gen_fence_normal)
