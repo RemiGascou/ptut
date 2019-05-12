@@ -119,7 +119,7 @@ n_error_train = y_pred_train[y_pred_train == -1].size
 n_error_test = y_pred_test[y_pred_test == -1].size
 n_error_outliers = y_pred_outliers[y_pred_outliers == 1].size
 
-print("error train: ", n_error_train, "/1000 ; errors novel regular: ", n_error_test, "/1000 ; errors novel abnormal: ", n_error_outliers, "/100")
+print("error train: ", n_error_train, "/1000 ; error test: ", n_error_test, "/1000 ; errors novel abnormal: ", n_error_outliers, "/100")
 
 print(y_pred_outliers)
 print(test_labels)
