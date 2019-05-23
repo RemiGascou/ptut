@@ -55,9 +55,9 @@ def gen_fence_anomaly_001() :
     return fence_light, fence_sound, fence_temp
 
 def gen_fence_anomaly_002() :
-    fence_light = {"min":15, "max":1013}
-    fence_sound = {"min":0, "max":85}
-    fence_temp  = {"min":35, "max":40}
+    fence_light = {"min":0, "max":400}
+    fence_sound = {"min":0, "max":150}
+    fence_temp  = {"min":0, "max":45}
     return fence_light, fence_sound, fence_temp
 
 def gen_fence_anomaly_003() :
@@ -67,9 +67,9 @@ def gen_fence_anomaly_003() :
     return fence_light, fence_sound, fence_temp
 
 def gen_fence_anomaly_004() :
-    fence_light = {"min":10, "max":300}
-    fence_sound = {"min":0, "max":135}
-    fence_temp  = {"min":0, "max":85}
+    fence_light = {"min":0, "max":1000}
+    fence_sound = {"min":0, "max":600}
+    fence_temp  = {"min":0, "max":200}
     return fence_light, fence_sound, fence_temp
 
 
@@ -86,7 +86,7 @@ def genscenario(fileout, gfa, samples = 100):
 
 
 if __name__ == '__main__':
-
-    genscenario("normal1000A.json", gen_fence_normal,1000)
-    genscenario("abnormal100.json", gen_fence_anomaly_004,100)
+    genscenario("ML_tests/norm1000.json", gen_fence_normal,1000)
+    genscenario("ML_tests/anom1000.json", gen_fence_anomaly_002,1000)
+    # genscenario("2abnormal1000.json", gen_fence_anomaly_004,1000)
     #genscenario("normal3.json", gen_fence_normal)
