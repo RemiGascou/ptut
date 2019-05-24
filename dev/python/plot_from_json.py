@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+"""
+Plotting data sets
+"""
 
 import json
 import matplotlib.pyplot as plt
 import sys
 
+########## Fonction pour afficher pour chaque capteurs un graphique avec les données normales et anormales ##########
 def plot_compare(normal_datafile,anomaly_datafile):
-
-    ########## Récupération des valeurs dans les fichiers ##########
+    # Récupération des valeurs dans les fichiers
     f = open(normal_datafile, "r")
     normal_data = [json.loads(line) for line in f.readlines()]
     f = open(anomaly_datafile, "r")
@@ -29,6 +32,7 @@ def plot_compare(normal_datafile,anomaly_datafile):
         abnormal_temp_object.append(d["temp"]["object"])
         abnormal_temp_ambient.append(d["temp"]["ambient"])
 
+    # Affichage des données
     plt.figure(1,figsize=(10, 8))
 
     plt.subplot(221)
@@ -60,9 +64,9 @@ def plot_compare(normal_datafile,anomaly_datafile):
 
 
 if __name__ == '__main__':
+########## Affichage sur un même graphique des données de tous les capteurs ##########
     if len(sys.argv) == 2:
         datafile = sys.argv[1]
-        # Read file
         f = open(datafile, "r")
         data = [json.loads(line) for line in f.readlines()]
         f.close()
@@ -79,6 +83,8 @@ if __name__ == '__main__':
             plt.plot(list(range(len(list_y))), list_y)
 
         plt.show()
+
+    ########## Affichage de 2 data sets avec un graphique par capteur ##########
     elif len(sys.argv) == 3:
         plot_compare(sys.argv[1],sys.argv[2])
     else:

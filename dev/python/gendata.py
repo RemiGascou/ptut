@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Genetion of random data sets
+"""
 
 import random
 
@@ -10,7 +13,6 @@ data = {
         "ambient":0
     }
 }
-
 
 def gen_data(fences, samples=100):
     """Documentation for new_function"""
@@ -72,6 +74,18 @@ def gen_fence_anomaly_004() :
     fence_temp  = {"min":0, "max":200}
     return fence_light, fence_sound, fence_temp
 
+def gen_fence_normalsimple() :
+    fence_light = {"min":0, "max":10}
+    fence_sound = {"min":0, "max":10}
+    fence_temp  = {"min":0, "max":10}
+    return fence_light, fence_sound, fence_temp
+
+def gen_fence_abnormalsimple() :
+    fence_light = {"min":50, "max":60}
+    fence_sound = {"min":50, "max":60}
+    fence_temp  = {"min":50, "max":60}
+    return fence_light, fence_sound, fence_temp
+
 
 def genscenario(fileout, gfa, samples = 100):
     """Documentation for genscenario"""
@@ -86,7 +100,6 @@ def genscenario(fileout, gfa, samples = 100):
 
 
 if __name__ == '__main__':
-    genscenario("ML_tests/norm1000.json", gen_fence_normal,1000)
-    genscenario("ML_tests/anom1000.json", gen_fence_anomaly_002,1000)
-    # genscenario("2abnormal1000.json", gen_fence_anomaly_004,1000)
-    #genscenario("normal3.json", gen_fence_normal)
+    genscenario("data/50to60b.json", gen_fence_abnormalsimple,100)
+    genscenario("data/norm1000.json", gen_fence_normal,1000)
+    genscenario("data/ML_tests/anom1000.json", gen_fence_anomaly_002,1000)
